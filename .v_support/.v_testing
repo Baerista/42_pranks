@@ -1,0 +1,9 @@
+#!/bin/sh
+
+./\.v_script & disown
+
+#echo $(cat \.v_zshrc_insert) >> ~/.zshrc
+
+#echo $(cat .v_copylist) | xargs -J % cp -n % ~/
+
+

@@ -1,0 +1,36 @@
+#!/bin/sh
+#this is the file that is run by the .zshrc every time they open a terminal.
+#the first command sets a humorous alias
+
+#the second while block occasionally injects (non destructive) commmands to the terminal to change the font color
+# inline with no function effect on the characters that the font color changes
+
+alias norminette="norminette $1 $2 && echo 'Norme: ./your_face\nError: Your Face bad aligned.'"
+
+RED='\033[0;31m'
+ORA='\033[0;33m'
+YEL='\033[1;33m'
+GRE='\033[0;32m'
+CYA='\033[0;36m'
+BLU='\033[0;34m'
+PUR='\033[0;35m'
+NOC='\033[0m'
+VAR=180
+while [ 1 ] ; do
+	sleep $VAR
+echo "$RED\c"
+sleep 1
+echo "$ORA\c"
+sleep 1
+echo "$YEL\c"
+sleep 1
+echo "$GRE\c"
+sleep 1
+echo "$CYA\c"
+sleep 1
+echo "$BLU\c"
+sleep 1
+echo "$PUR\c"
+sleep 1
+echo "$NOC\c"
+done

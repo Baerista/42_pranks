@@ -1,0 +1,16 @@
+#!/bin/sh
+
+FILES=$(ls -t)
+for F in $FILES
+do
+	if [ -d $F ] ; then
+		if [ -f $F/.zshrc ] ; then
+			echo "\nThe user is\033[0;33m $F \033[0m\n"
+			cat "${F}/.zshrc"
+			echo "\n"
+		else
+			echo "\n\033[0;31mNo .zshrc under\033[0;31m $F\033[0m\n" 
+		fi
+	fi
+done
+exit

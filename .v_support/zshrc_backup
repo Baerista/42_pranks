@@ -1,0 +1,6 @@
+function find42 () {
+	NAME=$1
+	ldapsearch -QLLL uid=$NAME | sed '/jpegPhoto/q' | grep -v jpegPhoto | grep -v objectClass
+}
+alias norminette="norminette $1 $2 && echo 'Norme: ./your_face\nError: Your Face bad aligned.'"
+alias norm="norminette -R CheckForbiddenSourceHeader"

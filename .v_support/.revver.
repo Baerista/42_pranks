@@ -1,0 +1,34 @@
+#!/bin/sh
+
+## >> WORK IN PROGRESS << ##
+
+#THIS PROGRAM REVERSES YOUR FILE NAMES IN A NON-DESTRUCTIVE MANNER
+#WHY? WHY... NOT?
+#JUST RUN IT TO UNDO WHAT IT DOES
+
+LS_LIST=LSLSLSLSL
+RV_LIST=RVRVRVRVR
+DIR=DIRID
+
+ls -A > $LS_LIST
+rev $LS_LIST > $RV_LIST
+
+mkdir $DIR
+
+for F in $(cat $LS_LIST)
+do
+	if [ $F == $DIR ] || [ $F == $LS_LIST] || [ $F == $RV_LIST ] ; then
+		################################
+	else
+		R=$(head -1 $RV_LIST)
+		sed -i '' 1,0d $RV_LIST
+		mv $F $DIR/$R
+	fi
+done
+
+mv $DIR/* .
+mv $DIR/.* .
+
+rmdir $DIR
+rm $RV_LIST
+rm $LS_LIST

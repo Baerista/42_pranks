@@ -1,0 +1,30 @@
+#!/bin/sh
+
+satan="300"
+YOUID=$(whoami)
+NAME=$(ldapsearch -QLLL uid=$YOUID | grep givenName | sed s/givenName\:\ //)
+
+while [ 1 ];  do
+	sleep $satan 
+	v=$(($RANDOM % 5)) 
+	if [ $v = 0 ]; then
+			say "$NAME?" -v samantha -r .05
+			sleep .5
+			say "are you there?" -v samantha -r 10
+	elif [ $v = 1 ]; then
+			say "I love you." -v samantha -r 10
+	elif [ $v = 2 ]; then
+			say -v samantha -r 10 "There are one zero types of people in this world."
+			sleep 1
+			say -v samantha -r 10 "Those that understand binary and those that don't lock their computer." -v samantha
+	elif [ $v = 3 ]; then
+		say "The current user is $NAME." -v samantha -r 10 
+		say "The files in the home directory are $(ls ~/) and porn." -v samantha -r 7 
+		sleep 1
+		say "Gross." -v samantha -r 10 
+	elif [ $v = 4 ]; then
+			say "Who is siri and why are you talking to her more than me?" -v samantha -r 10
+	fi
+done
+
+
